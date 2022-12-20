@@ -1,5 +1,6 @@
+/** By default, this is a mobile breakpoint **/
 .container {
-  margin-bottom: 6rem;
+  margin-bottom: 1rem;
   position: relative;
   z-index: 2;
 }
@@ -23,7 +24,7 @@
 }
 
 .subTitle {
-  margin: 0.75rem 0;
+  margin-top: 0.75rem;
   font-size: 1.5rem /* 24px */;
   line-height: 2rem /* 32px */;
 
@@ -54,14 +55,14 @@
 }
 
 /** 
-    Breakpoints:
-    ------------
-    sm: min-width: 640px; //small device
-    md: min-width: 768px; // medium device
-    lg: min-width: 1024px; // large device
-    xl: min-width: 1280px; // extra large device
-    2xl: min-width: 1536px; // 2 x extra large device
-  **/
+  Breakpoints:
+  ------------
+  sm: min-width: 640px; //small device
+  md: min-width: 768px; // medium device
+  lg: min-width: 1024px; // large device
+  xl: min-width: 1280px; // extra large device
+  2xl: min-width: 1536px; // 2 x extra large device
+**/
 
 /** sm breakpoint **/
 @media (min-width: 640px) {
@@ -71,7 +72,7 @@
   }
 
   .subTitle {
-    margin: 1.25rem 0;
+    margin-top: 1.25rem;
     max-width: 36rem;
   }
 
@@ -89,7 +90,7 @@
   }
 
   .subTitle {
-    margin: 1.25rem 0;
+    margin-top: 1.25rem;
   }
 
   .button {
