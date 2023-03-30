@@ -1,10 +1,11 @@
-import { DOMAttributes, HTMLAttributes } from "react";
+import { HTMLAttributes } from "react";
 import styles from "./banner.module.css";
 
 interface BannerProps extends HTMLAttributes<HTMLDivElement> {
   buttonText?: string;
   handleOnClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
+
 export const Banner = (props: Readonly<BannerProps>): JSX.Element => {
   const { buttonText = "", handleOnClick } = props;
   return (
