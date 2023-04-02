@@ -1,7 +1,13 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 
-const CoffeeStore = (): JSX.Element => {
+export const getStaticProps = () => {
+  return {
+    props: {},
+  };
+};
+
+const CoffeeStore = (props: any): JSX.Element => {
   const router = useRouter();
   return (
     <>

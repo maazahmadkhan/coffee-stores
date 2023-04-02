@@ -3,8 +3,25 @@ import Image from "next/image";
 import { Banner } from "../components/banner/banner.component";
 import { Card } from "../components/card/card.component";
 import styles from "../styles/Home.module.css";
+import coffeeStoresData from "../data/coffee-stores.json";
+import { AppContext } from "next/app";
 
-export default function Home() {
+export type CoffeeStore = typeof coffeeStoresData[number];
+
+export const getStaticProps = () => {
+  return {
+    props: {
+      coffeeStores: coffeeStoresData,
+    },
+  };
+};
+
+interface HomeProps {
+  coffeeStores: CoffeeStore[];
+}
+
+export default function Home(props: Readonly<HomeProps>): JSX.Element {
+  const { coffeeStores } = props;
   return (
     <>
       <Head>
@@ -18,7 +35,7 @@ export default function Home() {
           handleOnClick={() => {
             console.log("hi");
           }}
-          buttonText="View coffee stores nearby!"
+          buttonText="View stores nearby"
         />
         <div className={styles.heroImage}>
           <Image
@@ -28,20 +45,25 @@ export default function Home() {
             height={400}
           />
         </div>
-        <div className={styles.cardLayout}>
-          <Card
-            name="DarkHorse Coffee"
-            href="/"
-            className={styles.card}
-            imgUrl="/coffee-store/darkhorse-coffee"
-          />
-          <Card
-            name="DarkHorse Coffee"
-            href="/"
-            className={styles.card}
-            imgUrl="/coffee-store/darkhorse-coffee"
-          />
-        </div>
+        {coffeeStores?.length > 0 ? (
+          <>
+            <div className={styles.heading2}>Toronto Stores</div>
+            <div className={styles.cardLayout}>
+              {coffeeStores.map((coffeeStore) => {
+                const { id, address, imgUrl, name, neighbourhood, websiteUrl } =
+                  coffeeStore;
+                return (
+                  <Card
+                    key={id}
+                    imgUrl={imgUrl}
+                    name={name}
+                    href={`/coffee-store/${id}`}
+                  />
+                );
+              })}
+            </div>
+          </>
+        ) : null}
       </main>
     </>
   );
