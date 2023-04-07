@@ -4,11 +4,15 @@ import { Banner } from "../components/banner/banner.component";
 import { Card } from "../components/card/card.component";
 import styles from "../styles/Home.module.css";
 import coffeeStoresData from "../data/coffee-stores.json";
-import { AppContext } from "next/app";
+import { GetStaticProps } from "next";
 
 export type CoffeeStore = typeof coffeeStoresData[number];
 
-export const getStaticProps = () => {
+export type HomeStaticProps = {
+  coffeeStores: CoffeeStore[];
+};
+
+export const getStaticProps: GetStaticProps<HomeStaticProps> = () => {
   return {
     props: {
       coffeeStores: coffeeStoresData,
@@ -16,9 +20,7 @@ export const getStaticProps = () => {
   };
 };
 
-interface HomeProps {
-  coffeeStores: CoffeeStore[];
-}
+type HomeProps = HomeStaticProps & {};
 
 export default function Home(props: Readonly<HomeProps>): JSX.Element {
   const { coffeeStores } = props;
