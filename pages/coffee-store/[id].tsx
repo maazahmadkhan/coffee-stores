@@ -7,6 +7,7 @@ import { ParsedUrlQuery } from "querystring";
 import { CoffeeStore } from "..";
 import coffessStores from "../../data/coffee-stores.json";
 import styles from "../../styles/coffee-store.module.css";
+import cls from "classnames";
 interface CoffeeStoreParams extends ParsedUrlQuery {
   id: string;
 }
@@ -52,6 +53,9 @@ const CoffeeStore = (props: CoffeeStoreProps): JSX.Element => {
   // destructure props after router.isFallback check
   const { coffeeStore } = props;
   const { address, name, neighbourhood, imgUrl } = coffeeStore || {};
+
+  const handleUpvoteButton = () => {};
+
   return (
     <div className={styles.layout}>
       <Head>
@@ -69,15 +73,43 @@ const CoffeeStore = (props: CoffeeStoreProps): JSX.Element => {
             <Image
               src={imgUrl}
               alt={name || ""}
-              width={600}
-              height={360}
+              height={"360"}
+              width={"600"}
               className={styles.storeImg}
             />
           ) : null}
         </div>
-        <div className={styles.col2}>
-          <p>{address}</p>
-          <p>{neighbourhood}</p>
+        <div className={cls("glass", styles.col2)}>
+          <div className={styles.iconWrapper}>
+            <Image
+              src="/static/icons/places.svg"
+              height={"24"}
+              width="24"
+              alt="places"
+            />
+            <p className={styles.text}>{address}</p>
+          </div>
+          <div className={styles.iconWrapper}>
+            <Image
+              src="/static/icons/nearMe.svg"
+              height={"24"}
+              width="24"
+              alt="nearMe"
+            />
+            <p className={styles.text}>{neighbourhood}</p>
+          </div>
+          <div className={styles.iconWrapper}>
+            <Image
+              src="/static/icons/star.svg"
+              height={"24"}
+              width="24"
+              alt="star"
+            />
+            <p className={styles.text}>{"1"}</p>
+          </div>
+          <button className={styles.upvoteButton} onClick={handleUpvoteButton}>
+            Up vote!
+          </button>
         </div>
       </div>
     </div>
