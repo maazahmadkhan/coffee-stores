@@ -6,16 +6,18 @@ import styles from "../styles/Home.module.css";
 import coffeeStoresData from "../data/coffee-stores.json";
 import { GetStaticProps } from "next";
 
-export type CoffeeStore = typeof coffeeStoresData[number];
+export type CoffeeStore = (typeof coffeeStoresData)[number];
 
 export type HomeStaticProps = {
   coffeeStores: CoffeeStore[];
 };
 
-export const getStaticProps: GetStaticProps<HomeStaticProps> = () => {
+export const getStaticProps: GetStaticProps<HomeStaticProps> = async () => {
+  console.log(process.env.YO);
+  const response = await Promise.resolve(coffeeStoresData);
   return {
     props: {
-      coffeeStores: coffeeStoresData,
+      coffeeStores: response,
     },
   };
 };
@@ -52,7 +54,7 @@ export default function Home(props: Readonly<HomeProps>): JSX.Element {
             <div className={styles.heading2}>Toronto Stores</div>
             <div className={styles.cardLayout}>
               {coffeeStores.map((coffeeStore) => {
-                const { id, address, imgUrl, name, neighbourhood, websiteUrl } =
+                const { id, address, imgUrl, name, neighbourhood } =
                   coffeeStore;
                 return (
                   <Card
