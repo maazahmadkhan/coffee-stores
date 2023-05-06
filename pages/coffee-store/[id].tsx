@@ -21,6 +21,8 @@ export const getStaticProps: GetStaticProps<
   CoffeeStoreParams
 > = (staticProps) => {
   const { params } = staticProps;
+  //call api here and find from result set
+
   return {
     props: {
       coffeeStore: coffessStores?.find(
@@ -31,6 +33,7 @@ export const getStaticProps: GetStaticProps<
 };
 
 export const getStaticPaths: GetStaticPaths<CoffeeStoreParams> = () => {
+  //call api here
   const paths = coffessStores.map((coffeStore) => {
     return {
       params: { id: String(coffeStore.id) },
