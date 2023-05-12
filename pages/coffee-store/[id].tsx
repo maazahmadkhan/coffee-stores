@@ -22,12 +22,18 @@ export const getStaticProps: GetStaticProps<
 > = (staticProps) => {
   const { params } = staticProps;
   //call api here and find from result set
-
+  const coffeeStore = coffessStores?.find(
+    (coffeeStore) => String(coffeeStore.id) === params?.id
+  );
   return {
     props: {
-      coffeeStore: coffessStores?.find(
-        (coffeeStore) => String(coffeeStore.id) === params?.id
-      ),
+      coffeeStore: coffeeStore || {
+        address: "",
+        id: "",
+        imgUrl: "",
+        name: "",
+        neighbourhood: "",
+      },
     },
   };
 };
@@ -42,7 +48,7 @@ export const getStaticPaths: GetStaticPaths<CoffeeStoreParams> = () => {
   return {
     paths,
     //fall back true will render for unspecified paths while fallback false returns 404 page
-    fallback: false,
+    fallback: true,
   };
 };
 
