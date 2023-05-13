@@ -8,6 +8,8 @@ import { CoffeeStore } from "..";
 import coffessStores from "../../data/coffee-stores.json";
 import styles from "../../styles/coffee-store.module.css";
 import cls from "classnames";
+import { useContext, useEffect } from "react";
+import { ActionTypes, StoreContext } from "../_app";
 interface CoffeeStoreParams extends ParsedUrlQuery {
   id: string;
 }
@@ -64,7 +66,13 @@ const CoffeeStore = (props: CoffeeStoreProps): JSX.Element => {
   const { address, name, neighbourhood, imgUrl } = coffeeStore || {};
 
   const handleUpvoteButton = () => {};
-
+  const { state, dispatch } = useContext(StoreContext);
+  useEffect(() => {
+    dispatch({
+      type: ActionTypes.SET_LAT_LONG,
+      payload: { latLong: "sd" },
+    });
+  }, []);
   return (
     <div className={styles.layout}>
       <Head>
