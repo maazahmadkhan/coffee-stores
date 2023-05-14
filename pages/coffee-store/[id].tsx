@@ -23,7 +23,9 @@ export const getStaticProps: GetStaticProps<
   CoffeeStoreParams
 > = (staticProps) => {
   const { params } = staticProps;
-  //call api here and find from result set
+  //call externals api here and find from result set
+  //internal apis (next apis) are not available here since they are not running at build time
+
   const coffeeStore = coffessStores?.find(
     (coffeeStore) => String(coffeeStore.id) === params?.id
   );

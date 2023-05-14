@@ -9,9 +9,8 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  res.status(200).json({ name: "John Doe" });
+  res.status(200).json({ name: "hi slug" });
 }
 
-//File needs to be a function
-//function export by default
-//every function should be its own file
+//catch all
+// [...slug], [...all] -> anything
