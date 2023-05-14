@@ -9,7 +9,7 @@ import coffessStores from "../../data/coffee-stores.json";
 import styles from "../../styles/coffee-store.module.css";
 import cls from "classnames";
 import { useContext, useEffect } from "react";
-import { ActionTypes, StoreContext } from "../_app";
+import { ActionTypes, StoreContext } from "../../store/store-context";
 interface CoffeeStoreParams extends ParsedUrlQuery {
   id: string;
 }
